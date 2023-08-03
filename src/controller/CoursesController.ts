@@ -48,4 +48,24 @@ export class CourseController {
         }
     }
 
+    public deleteCourseById = async (req: Request, res: Response) => {
+
+        try {
+            const id = req.params.id
+
+            const courseBusiness = new CourseBusiness()
+            await courseBusiness.deleteCourseById(id)
+
+            res.status(200).send("Curso deletado com sucesso!")
+
+        } catch (error) {
+
+            if (error instanceof BaseError) {
+                res.status(error.statusCode).send(error.message)
+            } else {
+                res.send("Erro inesperado")
+            }
+        }
+    }
+
 }

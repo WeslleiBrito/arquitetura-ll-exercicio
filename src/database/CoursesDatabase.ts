@@ -26,4 +26,11 @@ export class CourseDatabase extends DatabaseConnect {
             return await DatabaseConnect.connection(this.NAME_TABLE_COURSES)
         }
     }
+
+    public deleteCourseById = async (id: string): Promise<number> => {
+
+        const deleted = await DatabaseConnect.connection(this.NAME_TABLE_COURSES).del().where({ id })
+
+        return deleted
+    }
 }

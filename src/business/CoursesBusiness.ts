@@ -1,5 +1,6 @@
 import { CourseDatabase } from "../database/CoursesDatabase"
 import { BadRequestError } from "../errors/BadRequestError"
+import { NotFoundError } from "../errors/BadRequestError copy"
 import { ConflictError } from "../errors/ConflictError"
 import { UnprocessableEntityError } from "../errors/UnprocessableEntityError"
 import { CourseDB } from "../types/types"
@@ -53,4 +54,18 @@ export class CourseBusiness {
         return create
     }
 
+    public deleteCourseById = async (id: string) => {
+
+        const courseDatabase = new CourseDatabase()
+
+        const [idExist] = await courseDatabase.findCourses(id)
+        console.log(idExist);
+
+        if (!idExist) {
+            throw new NotFoundError('O id informado não existe.')
+        }
+
+        await courseDatabase.deleteCourseById(id)
+
+    }
 }
