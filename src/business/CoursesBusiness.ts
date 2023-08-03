@@ -59,13 +59,25 @@ export class CourseBusiness {
         const courseDatabase = new CourseDatabase()
 
         const [idExist] = await courseDatabase.findCourses(id)
-        console.log(idExist);
 
         if (!idExist) {
             throw new NotFoundError('O id informado não existe.')
         }
 
         await courseDatabase.deleteCourseById(id)
+
+    }
+
+    public editCourseById = async (id: string, input: any) => {
+        const courseDatabase = new CourseDatabase()
+
+        const [idExist] = await courseDatabase.findCourses(id)
+
+        if (!idExist) {
+            throw new NotFoundError('O id informado não existe.')
+        }
+
+        await courseDatabase.editCourseById(id, input)
 
     }
 }

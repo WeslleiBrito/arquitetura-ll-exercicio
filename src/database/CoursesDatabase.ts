@@ -33,4 +33,16 @@ export class CourseDatabase extends DatabaseConnect {
 
         return deleted
     }
+
+    public editCourseById = async (id: string, input: any): Promise<number> => {
+        const {
+            newId,
+            name,
+            lessons
+        } = input
+
+        const update = await DatabaseConnect.connection(this.NAME_TABLE_COURSES).update({ newId, name, lessons }).where({ id })
+
+        return update
+    }
 }
