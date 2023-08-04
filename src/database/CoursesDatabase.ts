@@ -40,9 +40,10 @@ export class CourseDatabase extends DatabaseConnect {
             name,
             lessons
         } = input
-
-        const update = await DatabaseConnect.connection(this.NAME_TABLE_COURSES).update({ newId, name, lessons }).where({ id })
-
+ 
+        console.log(newId)
+        const update = await DatabaseConnect.connection(this.NAME_TABLE_COURSES).update({ id: newId, name: name, lessons: lessons }).where({ id })
+        
         return update
     }
 }

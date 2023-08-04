@@ -1,4 +1,4 @@
--- Active: 1691074846503@@127.0.0.1@3306
+-- Active: 1690320462049@@127.0.0.1@3306
 
 CREATE TABLE
     courses (
@@ -10,3 +10,5 @@ CREATE TABLE
 INSERT INTO
     courses (id, name, lessons)
 VALUES ("c001", "Javascript", 5), ("c002", "React", 10), ("c003", "Typescript", 15);
+
+UPDATE courses SET id = "c004" WHERE id = "c001";

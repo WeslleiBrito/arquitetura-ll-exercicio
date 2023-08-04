@@ -68,4 +68,30 @@ export class CourseController {
         }
     }
 
+    public editCourseById = async (req: Request, res: Response) => {
+        try {
+            const id = req.params.id
+            
+            const input: any = {
+                newId: req.body.newId,
+                name: req.body.name,
+                lessons: req.body.lessons
+            }
+            const courseBusiness = new CourseBusiness()
+            await courseBusiness.editCourseById(id, input)
+
+            res.status(201).send("Curso editado com sucesso!")
+            
+        } catch (error) {
+
+            if (error instanceof BaseError) {
+                res.status(error.statusCode).send(error.message)
+            } else {
+                res.send("Erro inesperado")
+            }
+
+        }
+        
+
+    }
 }
